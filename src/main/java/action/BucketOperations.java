@@ -14,7 +14,20 @@ import java.util.List;
 /**
  * Created by asi292 on 3/25/2018.
  */
+
+/**
+ * Class in which all the byucket operations  is done.
+ *
+ */
 public class BucketOperations {
+
+    /**
+     * Create bucket on server .
+     * @param minioClient clinet object
+     * @param conf Configuration Class object
+     * @throws XmlPullParserException, NoSuchAlgorithmException, InvalidKeyException, IOException
+     *
+     */
 
     public Configuration makeBucket(MinioClient minioClient, Configuration conf) throws XmlPullParserException, NoSuchAlgorithmException, InvalidKeyException, IOException {
           try {
@@ -28,6 +41,7 @@ public class BucketOperations {
                 minioClient.makeBucket(conf.getName().split(",")[1].trim());
                 System.out.println(conf.getName().split(",")[1].trim() +" is created successfully");
                 conf.setStatus("Success");
+                conf.setRepeat(conf.getRepeat()-1);
             }
         } catch (MinioException e) {
             System.out.println("Error occurred in createBucket" + e);
@@ -35,7 +49,13 @@ public class BucketOperations {
         }
         return  conf;
     }
-
+    /**
+     * List bucket present on server .
+     * @param minioClient clinet object
+     * @param conf Configuration Class object
+     * @throws XmlPullParserException, NoSuchAlgorithmException, InvalidKeyException, IOException, InsufficientDataException, ErrorResponseException, InvalidBucketNameException, InternalException, NoResponseException
+     *
+     */
 
 
     public Configuration listBucket(MinioClient minioClient, Configuration conf) throws XmlPullParserException, NoSuchAlgorithmException, InvalidKeyException, IOException, InsufficientDataException, ErrorResponseException, InvalidBucketNameException, InternalException, NoResponseException {
@@ -53,6 +73,13 @@ public class BucketOperations {
         return  conf;
     }
 
+    /**
+     * Delete bucket present on server .
+     * @param minioClient clinet object
+     * @param conf Configuration Class object
+     * @throws XmlPullParserException, NoSuchAlgorithmException, InvalidKeyException, IOException
+     *
+     */
 
     public Configuration deleteBucket(MinioClient minioClient, Configuration conf) throws XmlPullParserException, NoSuchAlgorithmException, InvalidKeyException, IOException {
         try {

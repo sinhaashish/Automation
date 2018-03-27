@@ -1,6 +1,4 @@
 package controller;
-
-
 import action.BucketOperations;
 import action.CheckControl;
 import action.ObjectOperations;
@@ -10,7 +8,6 @@ import io.minio.errors.*;
 import org.xmlpull.v1.XmlPullParserException;
 import service.ReadPropertyFile;
 import service.YamlReaderService;
-
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -19,18 +16,13 @@ import java.util.Properties;
 
 
 /**
- * Created by asi292 on 3/22/2018.
+ * Created by ashishsinha on 3/22/2018.
  */
 public class EntryClass {
     public static void main(String[] args) throws IOException, InvalidPortException, InvalidEndpointException, NoSuchAlgorithmException, InvalidKeyException, XmlPullParserException, InternalException, ErrorResponseException, InsufficientDataException, InvalidBucketNameException, NoResponseException {
-        if (args.length == 2) {
-            String yamlFile = args[0];
-            String PropertyFile = args[1];
-
-            List<Configuration> config = new YamlReaderService().getYamlData(yamlFile);
-            System.out.println(config);
-            Properties property = new ReadPropertyFile().getPropertiesfromFile(PropertyFile);//("C:\\Users\\asi292\\Desktop\\MinioClient.properties");
-            System.out.println(property);
+       if (args.length == 2) {
+            List<Configuration> config = new YamlReaderService().getYamlData(args[0]);
+            Properties property = new ReadPropertyFile().getPropertiesfromFile(args[1]);
             MinioClient minioClient = new MinioClient(property.getProperty("endpoint"), property.getProperty("accessKey"), property.getProperty("secretKey"));
             BucketOperations bucketOperations = new BucketOperations();
             ObjectOperations objectOperations = new ObjectOperations();
@@ -41,18 +33,28 @@ public class EntryClass {
                     case "":
                         System.out.println("The specified operation can't be blank");
                     case "createBucket":
-                        updatedConf = bucketOperations.makeBucket(minioClient, conf);
-                        if (CheckControl.validateStatus(updatedConf))
-                            System.exit(0);
+                        while(conf.getRepeat() > 0) {
+                            updatedConf = bucketOperations.makeBucket(minioClient, conf);
+                            if (CheckControl.validateStatus(updatedConf)) {
+                                System.out.println("Failed in createBucket ");
+                                System.exit(0);
+                            }
+                        }
                     case "listBucket":
                         while (conf.getRepeat() > 0) {
                             updatedConf = bucketOperations.listBucket(minioClient, conf);
+                            if (CheckControl.validateStatus(updatedConf)) {
+                                System.out.println("Failed in listBucket ");
+                                System.exit(0);
+                            }
                         }
                     case "deleteBucket":
                         while (conf.getRepeat() > 0) {
                             updatedConf = bucketOperations.deleteBucket(minioClient, conf);
-                            if (CheckControl.validateStatus(updatedConf))
+                            if (CheckControl.validateStatus(updatedConf)) {
+                                System.out.println("Failed in deleteBucket ");
                                 System.exit(0);
+                            }
                         }
                     case "getObject":
                         while (conf.getRepeat() > 0) {
@@ -66,12 +68,8 @@ public class EntryClass {
                             if (CheckControl.validateStatus(updatedConf))
                                 System.exit(0);
                         }
-
                 }
-
-
             }
-
         } else {
             System.out.println(" Please Enter the path to Yaml and the Property file");
         }

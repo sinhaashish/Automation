@@ -3,9 +3,20 @@ package action;
 import core.Configuration;
 
 /**
- * Created by asi292 on 3/25/2018.
+ * Created by ashishsinha on 3/25/2018.
+ */
+
+/**
+ * A Utility class to check the status
+ *
  */
 public class CheckControl {
+    /**
+     * Utiltity method to check the status.     *
+     * @param conf Configuration Class object
+     *
+     *
+     */
 
     public static boolean validateStatus(Configuration conf)
     {

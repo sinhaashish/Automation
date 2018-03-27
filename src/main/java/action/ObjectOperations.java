@@ -12,9 +12,21 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by asi292 on 3/26/2018.
+ * Created by ashishsinha on 3/26/2018.
+ */
+/**
+ * Clsss to perform all the Obhject level Operation
+ *
  */
 public class ObjectOperations {
+
+    /**
+     * Get Obejct Prresent in Bucket .
+     * @param minioClient clinet object
+     * @param conf Configuration Class object
+     * @throws XmlPullParserException, NoSuchAlgorithmException, InvalidKeyException, IOException
+     *
+     */
 
     public Configuration getObject(MinioClient minioClient, Configuration conf) throws XmlPullParserException, NoSuchAlgorithmException, InvalidKeyException, IOException {
         try {
@@ -35,7 +47,13 @@ public class ObjectOperations {
 
     return  conf;
     }
-
+    /**
+     * Put Obejct Prresent in Bucket .
+     * @param minioClient clinet object
+     * @param conf Configuration Class object
+     * @throws XmlPullParserException, NoSuchAlgorithmException, InvalidKeyException, IOException
+     *
+     */
 
 
     public Configuration putObject(MinioClient minioClient, Configuration conf) throws XmlPullParserException, NoSuchAlgorithmException, InvalidKeyException, IOException {

@@ -1,20 +1,17 @@
 api:
 - name: createBucket,sinh1543
-   repeat: 2
-   status: Test
+  repeat: 2
+  status: Test
 
- - name: putObject,sinh,atest
-   repeat: 2
-   status: Test
+- name: putObject,sinh,atest
+  repeat: 2
+  status: Test
 
- - name: listBucket
-   repeat: 2
-   status: Test
+- name: listBucket
+  repeat: 2
+  status: Test
 
- - name: deleteBucket,Sinha
-   repeat: 2
-   status: Test
+- name: deleteBucket,Sinha
+  repeat: 2
+  status: Test
 
- - name: getObject,sinh,atest
-   repeat: 2
-   status: Test

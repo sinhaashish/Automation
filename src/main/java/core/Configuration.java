@@ -1,4 +1,8 @@
 package core;
+/**
+ * A simple POJO class to read the Yaml file Configuration.
+ *
+ */
 
 public class Configuration{
     private String name;
