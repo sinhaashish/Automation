@@ -18,6 +18,13 @@ import java.util.Properties;
 /**
  * Created by ashishsinha on 3/22/2018.
  */
+/**
+ * This is the main class .
+ * It reads the yml file to create the list of Configuration objects and property file
+ * to create minio Object.
+ * Based on the name in Yml file; different operations are performed.
+ *
+ */
 public class EntryClass {
     public static void main(String[] args) throws IOException, InvalidPortException, InvalidEndpointException, NoSuchAlgorithmException, InvalidKeyException, XmlPullParserException, InternalException, ErrorResponseException, InsufficientDataException, InvalidBucketNameException, NoResponseException {
        if (args.length == 2) {
