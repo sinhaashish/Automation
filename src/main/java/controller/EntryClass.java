@@ -22,7 +22,7 @@ import java.util.Properties;
  * This is the main class .
  * It reads the yml file to create the list of Configuration objects and property file
  * to create minio Object.
- * Based on the name in Yml file; different operations are performed.
+ * Based on the name in Yml file; different operations are performed using switch case.
  *
  */
 public class EntryClass {
